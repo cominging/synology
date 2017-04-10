@@ -148,4 +148,23 @@ class Synology_FileStation_Api extends Synology_Api_Authenticate
             'mode' => $mode
         ));
     }
+    
+    /**
+     * Get file sharing list
+     *
+     * @param number $limit
+     * @param number $offset
+     * @param string $sortby (name|size|user|group|mtime|atime|ctime|crtime|posix|type|path)
+     * @param string $sortdirection (asc|desc)
+     * @return array
+     */
+    public function getSharingList($limit = 0, $offset = 0, $sortby = 'path', $sort_direction = 'ASC')
+    {
+        return $this->_request('Sharing', 'entry.cgi', 'list', array(
+            'limit' => $limit,
+            'offset' => $offset,
+            'sort_by' => $sortby,
+            'sort_direction' => $sort_direction
+        ));
+    }
 }
